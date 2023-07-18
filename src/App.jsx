@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 function App({ dispatch }) {
   const [showAlert, setShowAlert] = useState(false);
   const [email, setEmail] = useState('');
+  const [msg, setMsg] = useState('');
   const history = useNavigate();
 
 
@@ -26,6 +27,7 @@ function App({ dispatch }) {
       const { error, data } = await employees(options, getTurnover);
       if (error) {
         setShowAlert(true);
+        setMsg(error);
         setEmail('');
         startTimer();
       } else {
@@ -35,6 +37,7 @@ function App({ dispatch }) {
       }
     } else {
       setShowAlert(true);
+      setMsg('check it email!');
       setEmail('');
       startTimer();
     }
@@ -78,7 +81,7 @@ function App({ dispatch }) {
           </CunstomButton>
           {showAlert && (
             <Alert severity="error">
-              This is an error alert — <strong>check it email!</strong>
+              This is an error alert — <strong>{msg}</strong>
             </Alert>
           )}
         </CunstomPaper>

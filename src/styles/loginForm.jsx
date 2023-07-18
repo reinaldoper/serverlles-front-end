@@ -34,18 +34,18 @@ export const CunstomButton = styled(Button)`
 `
 
 export const CunstomBox = styled(Box)`
-   display: flex;
-   width: 100%;
-   height: 100vh;
-   background-color: #A9A9A9;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #A9A9A9;
 `
 
 export const ChartBox = styled(Box)`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-width: 100%;
-height: 100vh;
-background-color: #A9A9A9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #A9A9A9;
 `
