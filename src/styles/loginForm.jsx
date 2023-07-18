@@ -9,6 +9,14 @@ export const CunstomForm = styled('form')`
     margin-top: 10rem;
 `
 
+export const CunstomDiv = styled(Box)`
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 17vw;
+`
+
+
 export const CunstomPaper = styled(Paper)`
     display: flex;
     width: 30rem;

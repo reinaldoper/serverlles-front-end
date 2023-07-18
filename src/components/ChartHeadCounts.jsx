@@ -1,41 +1,66 @@
 import PropTypes from 'prop-types';
-import { Line } from 'react-chartjs-2';
 import { useState, useEffect } from 'react';
+import { CunstomDiv } from '../styles/loginForm';
+import { CircularProgress } from '@mui/material';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js'
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+)
+import { Line } from 'react-chartjs-2'
 
-const  ChartHeadCounts = ({ turnover }) => {
-  const [chartData, setChartData] = useState({});
 
+const ChartHeadCounts = ({ data }) => {
+  const [chart, setChar] = useState({});
+  const [userReset, setReset] = useState(false)
   useEffect(() => {
-    const fetchChartData = () => {
-        const labels = turnover.map((monthData) => monthData.total);
-        const headcountData = turnover.map((monthData) => monthData.headMesAmes);
+    const fetchChartData = async () => {
+      setChar({
+        labels: data[1][0].headMesAmes.map((monthData) => monthData.data),
+        datasets: [
+          {
+            label: "HeadCount",
+            data: data[1][0].headMesAmes.map((monthData) => monthData.headcount),
+            backgroundColor: ['red', 'blue'],
+            borderColor: "black",
+            borderWidth: 1,
+          },
+        ],
+      });
 
-        setChartData({
-          labels: labels,
-          datasets: [
-            {
-              label: 'HeadCount',
-              data: headcountData,
-              fill: false,
-              borderColor: 'rgb(255, 99, 132)',
-              tension: 0.1,
-            },
-          ],
-        });
-    };
-
+    }
+    startTimer();
     fetchChartData();
-  }, [turnover]);
+  }, [data]);
+  
+  const startTimer = () => {
+    setTimeout(() => {
+      setReset(true);
+    }, 2000);
+  };
   return (
-    <div>
-      <h1>HeadCount</h1>
-      <Line data={chartData} />
-    </div>
+    <CunstomDiv>
+    { userReset ? <Line data={chart} />: <CircularProgress color="secondary" size={50} />}
+    </CunstomDiv>
   )
 }
 
 ChartHeadCounts.propTypes = {
-  turnover: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default ChartHeadCounts;

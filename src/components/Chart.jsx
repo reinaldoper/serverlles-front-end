@@ -4,19 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { ChartBox, CunstomButton } from "../styles/loginForm";
 import ChartHeadCounts from "./ChartHeadCounts";
 import ChartTurnover from "./ChartTurnover";
+/* import { useState, useEffect } from 'react'; */
 
 const Chart = ({ turnover }) => {
   const navigate = useNavigate();
   return (
     <ChartBox>
-      <ChartHeadCounts turnover={turnover} />
+      <ChartHeadCounts data={turnover} />
       <CunstomButton
         variant="contained"
         onClick={() => navigate(-1)}
       >
         Home
       </CunstomButton>
-      <ChartTurnover turnover={turnover} />
+      <ChartTurnover data={turnover} />
     </ChartBox>
   )
 }
